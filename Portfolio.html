@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sbaa Mohamed Raouf - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav.scrolled .logo {
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: #fff;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="300" cy="700" r="120" fill="url(%23a)"/><circle cx="700" cy="800" r="80" fill="url(%23a)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-10px) rotate(240deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            to { text-shadow: 0 0 30px rgba(78, 205, 196, 0.8); }
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            font-size: 4rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            color: #fff;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-item strong {
+            color: #4ecdc4;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .skill-category h3 {
+            color: #4ecdc4;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 4px;
+            transition: width 2s ease-in-out;
+        }
+
+        /* Education Section */
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .education-card h3 {
+            color: #4ecdc4;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-card p {
+            color: #fff;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .school-name {
+            font-weight: bold;
+            color: #ff6b6b !important;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            color: #fff;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-item h4 {
+            color: #4ecdc4;
+            margin-bottom: 0.5rem;
+        }
+
+        .github-link {
+            color: #4ecdc4;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .github-link:hover {
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .github-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .github-link:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .description {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="#home" class="logo">SMR</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sbaa Mohamed Raouf</h1>
+            <p class="subtitle">Computer Science Student & Web Developer</p>
+            <p class="description">Passionate about creating innovative solutions through code and continuously learning new technologies</p>
+            <a href="#about" class="cta-button">Discover More</a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="fade-in">About Me</h2>
+            <div class="about-content fade-in">
+                <div class="about-image">
+                    <div class="profile-pic">SMR</div>
+                </div>
+                <div class="about-text">
+                    <h3>Hello! I'm Mohamed Raouf</h3>
+                    <p>I'm a dedicated third-year Computer Science student at the National High School of Computer Science in Sidi Bel Abbès. At 20 years old, I'm passionate about technology and constantly seeking to expand my knowledge in various programming domains.</p>
+                    <p>My journey in computer science has led me to develop expertise in multiple programming languages and technologies, with a particular focus on web development and problem-solving.</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Age:</strong> 20 years
+                        </div>
+                        <div class="info-item">
+                            <strong>Location:</strong> Sidi Bel Abbès, Algeria
+                        </div>
+                        <div class="info-item">
+                            <strong>Study:</strong> Computer Science
+                        </div>
+                        <div class="info-item">
+                            <strong>Year:</strong> Third Year
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="fade-in">Skills & Expertise</h2>
+            <div class="skills-grid fade-in">
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-item">
+                        <span>Frontend Development</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>HTML/CSS/JavaScript</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Responsive Design</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-item">
+                        <span>Java Programming</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Python Programming</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%"></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Object-Oriented Programming</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Specialized Skills</h3>
+                    <div class="skill-item">
+                        <span>Problem Solving</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Desktop Applications</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                    <div class="skill-item">
+                        <span>Algorithm Design</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 82%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="fade-in">Education</h2>
+            <div class="education-card fade-in">
+                <h3>Computer Science Student</h3>
+                <p class="school-name">National High School of Computer Science</p>
+                <p>Sidi Bel Abbès, Algeria</p>
+                <p><strong>Current Year:</strong> Third Year</p>
+                <p>Pursuing comprehensive education in computer science with focus on software development, algorithms, data structures, and modern programming practices. Active participant in academic projects and coding challenges.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="fade-in">Get In Touch</h2>
+            <div class="contact-content fade-in">
+                <p>I'm always open to discussing new opportunities, interesting projects, or just having a conversation about technology!</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>Location</h4>
+                        <p>Sidi Bel Abbès, Algeria</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>GitHub</h4>
+                        <p><a href="https://github.com/Raouf-sb" target="_blank" class="github-link">@Raouf-sb</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Education</h4>
+                        <p>National High School of Computer Science</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Status</h4>
+                        <p>Computer Science Student</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBar = entry.target;
+                    const width = skillBar.style.width;
+                    skillBar.style.width = '0%';
+                    setTimeout(() => {
+                        skillBar.style.width = width;
+                    }, 200);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Add typing effect to hero title
+        const heroTitle = document.querySelector('.hero h1');
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
